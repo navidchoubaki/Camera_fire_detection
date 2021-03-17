@@ -10,24 +10,6 @@ alarm_status = False
 
 def play_audio():
     playsound.playsound("Alarm.mp3")
-
-# def send_mail_function():
-#     # recipientEmail = nafit.rigi@gmail.com
-#     # recipientEmail = recipientEmail.lower()
-#
-#
-#     try:
-#         server = smtplib.SMTP('smtp.gmail.com', 587)
-#         server.ehlo()
-#         server.starttls()
-#         server.login("nafit.rigi@gmail.com", 'pwldethaxamyjhhj')
-#         server.sendmail('nafit.rigi@gmail.com', nafit.rigi@gmail.com, "Warning A Fire Accident has been reported on ABC Company")
-#         print("sent to {}".format(nafit.rigi@gmail.com))
-#         server.close()
-#     except Exception as e:
-#     	print(e)
-
-
 video = cv2.VideoCapture(0)
 while True:
     ret, frame = video.read()
@@ -37,7 +19,7 @@ while True:
     
     lower = [22,50,50]
     upper = [35,255,255]
-###import the numpy as np    
+ 
     lower = np.array(lower, dtype='uint8')
     upper = np.array(upper, dtype='uint8')
     mask = cv2.inRange(hsv,lower,upper)
@@ -53,10 +35,6 @@ while True:
         if alarm_status == False:
             threading.Thread( target=play_audio ).start()
             alarm_status = True
-
-        # if email_status == False:
-        #     threading.Thread( target=send_mail_function ).start()
-        #     email_status = True
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
